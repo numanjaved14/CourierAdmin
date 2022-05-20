@@ -10,21 +10,68 @@ class OrderHistoryWidget extends StatelessWidget {
       child: ListTile(
         title: Row(
           children: const [
-            Text('Order Name: Glass Box'),
+            Text(
+              'Order Name: Glass Box',
+              style: TextStyle(
+                fontSize: 26,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
+            ),
             Spacer(),
             Text(
               '• Completed',
-              style: TextStyle(color: Colors.green),
+              style: TextStyle(
+                color: Colors.green,
+                fontSize: 26,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ],
         ),
         subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: const [
-            Text('Order ID: x-001'),
-            Text('Delivery Data: Jan 8, 2022'),
-            Text('Courier Name: Ahmad'),
-            Text('User Name: Zaviar'),
-            Text('Payment: \$10'),
+            Text(
+              'Order ID: x-001',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Color(0xff404040),
+              ),
+            ),
+            Text(
+              'Delivery Data: Jan 8, 2022',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Color(0xff404040),
+              ),
+            ),
+            Text(
+              'Courier Name: Ahmad',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Color(0xff404040),
+              ),
+            ),
+            Text(
+              'User Name: Zaviar',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Color(0xff404040),
+              ),
+            ),
+            Text(
+              'Payment: \$10',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Color(0xff404040),
+              ),
+            ),
           ],
         ),
       ),

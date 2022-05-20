@@ -7,6 +7,7 @@ class CourierPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: const Text('Courier Page')),
       body: SafeArea(
         child: ListView.builder(
           itemCount: 20,

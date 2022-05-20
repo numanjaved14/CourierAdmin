@@ -51,25 +51,28 @@ class _BarChart extends StatelessWidget {
     String text;
     switch (value.toInt()) {
       case 0:
-        text = 'Mn';
+        text = 'Jan';
         break;
       case 1:
-        text = 'Te';
+        text = 'Feb';
         break;
       case 2:
-        text = 'Wd';
+        text = 'Mar';
         break;
       case 3:
-        text = 'Tu';
+        text = 'Apr';
         break;
       case 4:
-        text = 'Fr';
+        text = 'May';
         break;
       case 5:
-        text = 'St';
+        text = 'June';
         break;
       case 6:
-        text = 'Sn';
+        text = 'July';
+        break;
+      case 7:
+        text = 'Aug';
         break;
       default:
         text = '';
@@ -153,7 +156,7 @@ class _BarChart extends StatelessWidget {
           showingTooltipIndicators: [0],
         ),
         BarChartGroupData(
-          x: 3,
+          x: 4,
           barRods: [
             BarChartRodData(
               toY: 13,
@@ -163,10 +166,20 @@ class _BarChart extends StatelessWidget {
           showingTooltipIndicators: [0],
         ),
         BarChartGroupData(
-          x: 3,
+          x: 5,
           barRods: [
             BarChartRodData(
               toY: 10,
+              gradient: _barsGradient,
+            )
+          ],
+          showingTooltipIndicators: [0],
+        ),
+        BarChartGroupData(
+          x: 6,
+          barRods: [
+            BarChartRodData(
+              toY: 13,
               gradient: _barsGradient,
             )
           ],
@@ -190,7 +203,7 @@ class BarChartSample3State extends State<BarChartWidget> {
       child: Card(
         elevation: 0,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-        color: const Color(0xff2c4260),
+        color: const Color(0xff404040),
         child: const _BarChart(),
       ),
     );

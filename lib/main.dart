@@ -1,4 +1,5 @@
 import 'package:courier_admin/views/screens/dashboard.dart';
+import 'package:courier_admin/views/screens/side_bar.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,9 +14,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.red,
       ),
-      home: const DahboardScreen(),
+      home: const SideDrawer(),
     );
   }
 }
