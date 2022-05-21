@@ -2,6 +2,7 @@ import 'package:courier_admin/views/screens/payment.dart';
 import 'package:courier_admin/views/screens/courier.dart';
 import 'package:courier_admin/views/screens/dashboard.dart';
 import 'package:courier_admin/views/screens/order_history.dart';
+import 'package:courier_admin/views/screens/settings.dart';
 import 'package:courier_admin/views/screens/user_history.dart';
 import 'package:flutter/material.dart';
 import 'package:sidebarx/sidebarx.dart';
@@ -98,6 +99,10 @@ class _SideDrawerState extends State<SideDrawer> {
                 label: 'User History',
               ),
               const SidebarXItem(
+                icon: Icons.settings,
+                label: 'Settings',
+              ),
+              const SidebarXItem(
                 icon: Icons.logout,
                 label: 'Log Out',
               ),
@@ -140,6 +145,8 @@ class _ScreensExample extends StatelessWidget {
           case 4:
             return const UserHistoryScreen();
           case 5:
+            return const Settings();
+          case 6:
             return const Text('Log Out User');
           default:
             return Text(

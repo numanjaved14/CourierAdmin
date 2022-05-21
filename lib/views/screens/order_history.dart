@@ -6,14 +6,77 @@ class OrderHistoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Order History'),
-      ),
-      body: SafeArea(
-        child: ListView.builder(
-          itemCount: 20,
-          itemBuilder: (context, index) => const OrderHistoryWidget(),
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Order History'),
+          bottom: const TabBar(
+            tabs: [
+              Tab(
+                text: 'Users',
+              ),
+              Tab(
+                text: 'Reffered Users',
+              ),
+            ],
+          ),
+        ),
+        body: TabBarView(
+          children: [
+            Column(
+              children: [
+                TextField(
+                  // controller: _controller,
+                  decoration: InputDecoration(
+                    hintText: "Search by user name",
+                    suffixIcon: IconButton(
+                      onPressed: () => {},
+                      icon: const Icon(
+                        Icons.search,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.75,
+                  child: ListView.builder(
+                    itemCount: 20,
+                    itemBuilder: (context, index) => const OrderHistoryWidget(),
+                  ),
+                ),
+              ],
+            ),
+            Column(
+              children: [
+                TextField(
+                  // controller: _controller,
+                  decoration: InputDecoration(
+                    hintText: "Search by user name",
+                    suffixIcon: IconButton(
+                      onPressed: () => {},
+                      icon: const Icon(
+                        Icons.search,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.75,
+                  child: ListView.builder(
+                    itemCount: 20,
+                    itemBuilder: (context, index) => const OrderHistoryWidget(),
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );

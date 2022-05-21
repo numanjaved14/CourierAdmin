@@ -1,4 +1,4 @@
-import 'package:courier_admin/views/screens/dashboard.dart';
+import 'package:courier_admin/views/screens/log_in.dart';
 import 'package:courier_admin/views/screens/side_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
-      home: const SideDrawer(),
+      home: const LogIn(),
     );
   }
 }
