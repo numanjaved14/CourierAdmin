@@ -48,7 +48,7 @@ class CourierWidget extends StatelessWidget {
               ),
             ),
             Text(
-              'Total Income: Jan, 8, 2022',
+              'Total Income: 2507\$',
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,

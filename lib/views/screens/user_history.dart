@@ -29,7 +29,7 @@ class _UserHistoryScreenState extends State<UserHistoryScreen> {
             ),
           ),
           Card(
-            child: Image.asset('assets/images/map_dummy.png'),
+            child: Image.asset('assets/images/map_dummy.png',height: 630,),
           ),
         ],
       ),
