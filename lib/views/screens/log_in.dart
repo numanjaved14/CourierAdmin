@@ -1,3 +1,4 @@
+import 'package:courier_admin/services/auth_methods.dart';
 import 'package:courier_admin/views/screens/side_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -6,6 +7,8 @@ class LogIn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController _emailController = TextEditingController();
+    TextEditingController _passController = TextEditingController();
     var size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
@@ -40,16 +43,16 @@ class LogIn extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    const TextField(
-                      // controller: _controller,
-                      decoration: InputDecoration(
+                    TextField(
+                      controller: _emailController,
+                      decoration: const InputDecoration(
                         hintText: "E-Mail",
                         prefixIcon: Icon(Icons.person),
                       ),
                     ),
-                    const TextField(
-                      // controller: _controller,
-                      decoration: InputDecoration(
+                    TextField(
+                      controller: _passController,
+                      decoration: const InputDecoration(
                         hintText: "Password",
                         prefixIcon: Icon(
                           Icons.key,
@@ -57,12 +60,17 @@ class LogIn extends StatelessWidget {
                       ),
                     ),
                     ElevatedButton(
-                      onPressed: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => const SideDrawer(),
-                          ),
-                        );
+                      onPressed: () async {
+                        var res = await AuthMethods().signInUser(
+                            email: _emailController.text,
+                            password: _passController.text);
+                        if (res == 'Success') {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const SideDrawer(),
+                            ),
+                          );
+                        }
                       },
                       child: const Text('Log In'),
                     ),

@@ -1,6 +1,3 @@
-import 'dart:html';
-import 'dart:ui';
-
 import 'package:courier_admin/views/widgets/bar_chart.dart';
 import 'package:flutter/material.dart';
 

@@ -1,19 +1,43 @@
-import 'package:flutter/material.dart';
+import 'dart:typed_data';
 
-class CourierWidget extends StatelessWidget {
-  const CourierWidget({Key? key}) : super(key: key);
+import 'package:courier_admin/services/databse_services.dart';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
+class CourierWidget extends StatefulWidget {
+  var snap;
+  CourierWidget({
+    Key? key,
+    required this.snap,
+  }) : super(key: key);
+
+  @override
+  State<CourierWidget> createState() => _CourierWidgetState();
+}
+
+class _CourierWidgetState extends State<CourierWidget> {
+  Uint8List? file;
+
+  @override
+  void initState() {
+    // Future<Uint8List> response = readImage(widget.snap['photoUrl'].toString());
+    // setState(() {
+    //   file = response as Uint8List;
+    // });
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Card(
       elevation: 8.0,
       child: ListTile(
-        leading: Image.network(
-          'https://pbs.twimg.com/profile_images/685700874434314240/80T5j3HF_400x400.jpg',
-          fit: BoxFit.cover,
+        leading: CircleAvatar(
+          backgroundImage: NetworkImage(widget.snap['photoUrl']),
         ),
-        title: const Text(
-          'Numan',
+        title: Text(
+          widget.snap['username'],
           style: TextStyle(
             fontSize: 26,
             fontWeight: FontWeight.bold,
@@ -22,9 +46,9 @@ class CourierWidget extends StatelessWidget {
         ),
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Text(
-              'Phone Number: +924441234567',
+              widget.snap['email'],
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
@@ -32,32 +56,85 @@ class CourierWidget extends StatelessWidget {
               ),
             ),
             Text(
-              'Registration date: Jan, 8, 2022',
+              'Vehicle registrationn Number:' + widget.snap['vehicleRegNo'],
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
                 color: Color(0xff404040),
               ),
             ),
-            Text(
-              'Orders Completed: 25',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                color: Color(0xff404040),
-              ),
-            ),
-            Text(
-              'Total Income: 2507\$',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                color: Color(0xff404040),
-              ),
-            ),
+            // Text(
+            //   'Orders Completed: 25',
+            //   style: TextStyle(
+            //     fontSize: 16,
+            //     fontWeight: FontWeight.bold,
+            //     color: Color(0xff404040),
+            //   ),
+            // ),
+            // Text(
+            //   'Total Income: 2507\$',
+            //   style: TextStyle(
+            //     fontSize: 16,
+            //     fontWeight: FontWeight.bold,
+            //     color: Color(0xff404040),
+            //   ),
+            // ),
+            widget.snap['isApproved'] == false
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () => acceptUser(
+                          widget.snap['id'],
+                        ),
+                        child: Text('Accept'),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {},
+                        child: Text('Decline'),
+                      ),
+                    ],
+                  )
+                : widget.snap['isDeclined'] == true
+                    ? Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          ElevatedButton(
+                            onPressed: () => acceptUser(
+                              widget.snap['id'],
+                            ),
+                            child: Text('Accept'),
+                          ),
+                        ],
+                      )
+                    : const SizedBox(),
           ],
         ),
       ),
     );
+  }
+
+  void acceptUser(String uid) async {
+    print('Function is called');
+    var res = await DataBaseMethods().approveUser(uid: uid);
+    if (res == 'Success') {
+      setState(() {
+        widget.snap['isApproved'] = true;
+      });
+      print('User is authenticated successfully');
+    } else
+      print(res);
+  }
+
+  void declineUser(String uid) async {
+    print('Function is called');
+    var res = await DataBaseMethods().approveUser(uid: uid);
+    if (res == 'Success') {
+      setState(() {
+        widget.snap['isDeclined'] = true;
+      });
+      print('User is authenticated successfully');
+    } else
+      print(res);
   }
 }

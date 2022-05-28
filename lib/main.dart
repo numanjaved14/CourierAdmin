@@ -9,14 +9,15 @@ Future<void> main() async {
 
   if (kIsWeb) {
     await Firebase.initializeApp(
-        options: const FirebaseOptions(
-            apiKey: 'AIzaSyBwHhQej-ethg6QQ6-kZMqfys-bqMrwFqI',
-            measurementId: "G-QQEJL2CS27",
-            appId: '1:880484343094:web:1a203ee79f747d95ace797',
-            messagingSenderId: '880484343094',
-            authDomain: 'returnpost-f66e7.firebaseapp.com',
-            projectId: 'returnpost-f66e7',
-            storageBucket: 'returnpost-f66e7.appspot.com'));
+      options: const FirebaseOptions(
+          apiKey: 'AIzaSyA1rbUyo6_5l5lbW3SKa28Ao5tiI3PO7F0',
+          measurementId: "G-C83HCM80X1",
+          appId: '1:153732324019:web:477284ad9175814eb7eec6',
+          messagingSenderId: '153732324019',
+          authDomain: 'return-post.firebaseapp.com',
+          projectId: 'return-post',
+          storageBucket: 'return-post.appspot.com'),
+    );
   } else {
     await Firebase.initializeApp();
   }

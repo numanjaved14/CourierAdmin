@@ -1,3 +1,4 @@
+import 'package:courier_admin/views/widgets/courier_item.dart';
 import 'package:courier_admin/views/widgets/order_history_item.dart';
 import 'package:flutter/material.dart';
 
@@ -71,7 +72,7 @@ class OrderHistoryPage extends StatelessWidget {
                   height: MediaQuery.of(context).size.height * 0.75,
                   child: ListView.builder(
                     itemCount: 20,
-                    itemBuilder: (context, index) => const OrderHistoryWidget(),
+                    itemBuilder: (context, index) => Container(),
                   ),
                 ),
               ],
