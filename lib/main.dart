@@ -10,13 +10,13 @@ Future<void> main() async {
   if (kIsWeb) {
     await Firebase.initializeApp(
       options: const FirebaseOptions(
-          apiKey: 'AIzaSyA1rbUyo6_5l5lbW3SKa28Ao5tiI3PO7F0',
-          measurementId: "G-C83HCM80X1",
-          appId: '1:153732324019:web:477284ad9175814eb7eec6',
-          messagingSenderId: '153732324019',
-          authDomain: 'return-post.firebaseapp.com',
-          projectId: 'return-post',
-          storageBucket: 'return-post.appspot.com'),
+          apiKey: "AIzaSyA1rbUyo6_5l5lbW3SKa28Ao5tiI3PO7F0",
+    authDomain: "return-post.firebaseapp.com",
+    projectId: "return-post",
+    storageBucket: "return-post.appspot.com",
+    messagingSenderId: "153732324019",
+    appId: "1:153732324019:web:5a041252eeba065eb7eec6",
+    measurementId: "G-WRX2ZRCV6T")
     );
   } else {
     await Firebase.initializeApp();

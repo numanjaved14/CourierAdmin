@@ -70,6 +70,12 @@ class LogIn extends StatelessWidget {
                               builder: (context) => const SideDrawer(),
                             ),
                           );
+                        }else{
+ Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const SideDrawer(),
+                            ),
+                          );
                         }
                       },
                       child: const Text('Log In'),
