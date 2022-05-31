@@ -1,4 +1,5 @@
 import 'package:courier_admin/views/screens/courier_approved.dart';
+import 'package:courier_admin/views/screens/courier_declined.dart';
 import 'package:courier_admin/views/screens/courier_requests.dart';
 import 'package:courier_admin/views/widgets/courier_item.dart';
 import 'package:flutter/material.dart';
@@ -31,32 +32,7 @@ class CourierPage extends StatelessWidget {
           children: [
             const CourierRequests(),
             const CourierApproved(),
-            Column(
-              children: [
-                TextField(
-                  // controller: _controller,
-                  decoration: InputDecoration(
-                    hintText: "Search by user name",
-                    suffixIcon: IconButton(
-                      onPressed: () => {},
-                      icon: const Icon(
-                        Icons.search,
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.75,
-                  child: ListView.builder(
-                    itemCount: 20,
-                    itemBuilder: (context, index) => Container(),
-                  ),
-                ),
-              ],
-            ),
+            const CourierDeclined(),
           ],
         ),
       ),

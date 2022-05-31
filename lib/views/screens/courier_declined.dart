@@ -18,6 +18,7 @@ class _CourierDeclinedState extends State<CourierDeclined> {
         stream: FirebaseFirestore.instance
             .collection('users')
             .where('isDeclined', isEqualTo: true)
+            .where('isApproved', isEqualTo: false)
             .snapshots(),
         builder: (context,
             AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {

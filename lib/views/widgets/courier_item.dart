@@ -2,7 +2,6 @@ import 'dart:typed_data';
 
 import 'package:courier_admin/services/databse_services.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
 class CourierWidget extends StatefulWidget {
   var snap;
@@ -37,7 +36,7 @@ class _CourierWidgetState extends State<CourierWidget> {
           backgroundImage: NetworkImage(widget.snap['photoUrl']),
         ),
         title: Text(
-          widget.snap['username'],
+          widget.snap['username'].toString(),
           style: TextStyle(
             fontSize: 26,
             fontWeight: FontWeight.bold,
@@ -48,7 +47,7 @@ class _CourierWidgetState extends State<CourierWidget> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              widget.snap['email'],
+              widget.snap['email'].toString(),
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
@@ -56,7 +55,8 @@ class _CourierWidgetState extends State<CourierWidget> {
               ),
             ),
             Text(
-              'Vehicle registrationn Number:' + widget.snap['vehicleRegNo'],
+              'Vehicle registrationn Number:' +
+                  widget.snap['vehicleRegNo'].toString(),
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
@@ -79,7 +79,8 @@ class _CourierWidgetState extends State<CourierWidget> {
             //     color: Color(0xff404040),
             //   ),
             // ),
-            widget.snap['isApproved'] == false
+            widget.snap['isApproved'] == false &&
+                    widget.snap['isDeclined'] == false
                 ? Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -90,12 +91,15 @@ class _CourierWidgetState extends State<CourierWidget> {
                         child: Text('Accept'),
                       ),
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () => declineUser(
+                          widget.snap['id'],
+                        ),
                         child: Text('Decline'),
                       ),
                     ],
                   )
-                : widget.snap['isDeclined'] == true
+                : widget.snap['isDeclined'] == true &&
+                        widget.snap['isApproved'] == false
                     ? Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -128,12 +132,12 @@ class _CourierWidgetState extends State<CourierWidget> {
 
   void declineUser(String uid) async {
     print('Function is called');
-    var res = await DataBaseMethods().approveUser(uid: uid);
+    var res = await DataBaseMethods().declineUser(uid: uid);
     if (res == 'Success') {
       setState(() {
         widget.snap['isDeclined'] = true;
       });
-      print('User is authenticated successfully');
+      print('User is declined successfully');
     } else
       print(res);
   }

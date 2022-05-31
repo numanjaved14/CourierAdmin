@@ -1,10 +1,10 @@
+import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:courier_admin/models/update_user_model.dart' as model;
-import 'package:courier_admin/models/decline_user_model.dart' as declinemodel;
 
 class DataBaseMethods {
   FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
@@ -38,9 +38,9 @@ class DataBaseMethods {
   }) async {
     if (uid.isNotEmpty) {
       try {
-        model.UserModel user = model.UserModel(
-          uid: uid,
+        model.UpdateCheckModel user = model.UpdateCheckModel(
           isApproved: true,
+          isDeclined: false,
         );
         await _firestore.collection('users').doc(uid).update(
               user.toJSon(),
@@ -59,8 +59,8 @@ class DataBaseMethods {
   }) async {
     if (uid.isNotEmpty) {
       try {
-        declinemodel.DeclineModel user = declinemodel.DeclineModel(
-          uid: uid,
+        model.UpdateCheckModel user = model.UpdateCheckModel(
+          isApproved: false,
           isDeclined: true,
         );
         await _firestore.collection('users').doc(uid).update(

@@ -3,18 +3,17 @@ import 'dart:isolate';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/rendering.dart';
 
-class UserModel {
-  final String? uid;
-
+class UpdateCheckModel {
   final bool? isApproved;
+  final bool? isDeclined;
 
-  UserModel({
-    required this.uid,
+  UpdateCheckModel({
     required this.isApproved,
+    required this.isDeclined,
   });
 
   Map<String, dynamic> toJSon() => {
-        'id': uid,
+        'isDeclined': isDeclined,
         'isApproved': isApproved,
       };
 }
