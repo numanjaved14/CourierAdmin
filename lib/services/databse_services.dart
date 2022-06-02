@@ -1,6 +1,5 @@
-import 'dart:convert';
-import 'dart:io';
-import 'dart:typed_data';
+import 'package:uuid/uuid.dart';
+import 'package:uuid/uuid_util.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -66,6 +65,26 @@ class DataBaseMethods {
         await _firestore.collection('users').doc(uid).update(
               user.toJSon(),
             );
+        return res = 'Success';
+      } catch (e) {
+        print(e.toString());
+      }
+    }
+    return res;
+  }
+
+  Future<String> addBrand({
+    required String brandName,
+    String res = "Some Error Occured",
+  }) async {
+    var id = Uuid().v1();
+    if (brandName.isNotEmpty) {
+      try {
+        await _firestore.collection('brands').doc(id).set(
+          {
+            'brandName': brandName,
+          },
+        );
         return res = 'Success';
       } catch (e) {
         print(e.toString());
