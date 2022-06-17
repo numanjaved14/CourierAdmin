@@ -1,4 +1,5 @@
 import 'package:courier_admin/views/screens/add_brand.dart';
+import 'package:courier_admin/views/screens/add_carrier.dart';
 import 'package:courier_admin/views/screens/payment.dart';
 import 'package:courier_admin/views/screens/courier.dart';
 import 'package:courier_admin/views/screens/dashboard.dart';
@@ -104,6 +105,10 @@ class _SideDrawerState extends State<SideDrawer> {
                 label: 'Add Brand',
               ),
               const SidebarXItem(
+                icon: Icons.branding_watermark_rounded,
+                label: 'Add Carrier',
+              ),
+              const SidebarXItem(
                 icon: Icons.settings,
                 label: 'Settings',
               ),
@@ -152,8 +157,10 @@ class _ScreensExample extends StatelessWidget {
           case 5:
             return const AddBrand();
           case 6:
-            return const Settings();
+            return const AddCarrier();
           case 7:
+            return const Settings();
+          case 8:
             return const Text('Log Out User');
           default:
             return Text(

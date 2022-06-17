@@ -73,16 +73,34 @@ class DataBaseMethods {
     return res;
   }
 
-  Future<String> addBrand({
-    required String brandName,
-    String res = "Some Error Occured",
-  }) async {
+  Future<String> addBrand(
+      {required String brandName, required String brandPrice}) async {
+    String res = "Some Error Occured";
     var id = Uuid().v1();
     if (brandName.isNotEmpty) {
       try {
         await _firestore.collection('brands').doc(id).set(
           {
             'brandName': brandName,
+            'brandPrice': brandPrice,
+          },
+        );
+        return res = 'Success';
+      } catch (e) {
+        print(e.toString());
+      }
+    }
+    return res;
+  }
+
+  Future<String> addCarrier({required String carrierName}) async {
+    String res = "Some Error Occured";
+    var id = Uuid().v1();
+    if (carrierName.isNotEmpty) {
+      try {
+        await _firestore.collection('carriers').doc(id).set(
+          {
+            'carrierName': carrierName,
           },
         );
         return res = 'Success';

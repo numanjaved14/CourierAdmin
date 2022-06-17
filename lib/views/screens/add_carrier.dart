@@ -9,25 +9,24 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../utils/utils.dart';
 
-class AddBrand extends StatefulWidget {
-  const AddBrand({Key? key}) : super(key: key);
+class AddCarrier extends StatefulWidget {
+  const AddCarrier({Key? key}) : super(key: key);
 
   @override
-  State<AddBrand> createState() => _AddBrandState();
+  State<AddCarrier> createState() => _AddCarrierState();
 }
 
-class _AddBrandState extends State<AddBrand> {
+class _AddCarrierState extends State<AddCarrier> {
   @override
   Widget build(BuildContext context) {
     TextEditingController _nameController = TextEditingController();
-    TextEditingController _priceController = TextEditingController();
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Add Brand'),
       ),
       body: StreamBuilder(
-          stream: FirebaseFirestore.instance.collection('brands').snapshots(),
+          stream: FirebaseFirestore.instance.collection('carriers').snapshots(),
           builder: (context,
               AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
             if (snapshot.hasData) {
@@ -37,45 +36,18 @@ class _AddBrandState extends State<AddBrand> {
                   TextField(
                     controller: _nameController,
                     decoration: InputDecoration(
-                      hintText: "Enter brand name",
-                      // suffixIcon: IconButton(
-                      //   onPressed: () async {
-                      //     await DataBaseMethods()
-                      //         .addBrand(brandName: _nameController.text)
-                      //         .whenComplete(
-                      //           () => Navigator.of(context).pushReplacement(
-                      //             MaterialPageRoute(
-                      //               builder: (context) => const SideDrawer(),
-                      //             ),
-                      //           ),
-                      //         );
-                      //   },
-                      //   icon: const Icon(
-                      //     Icons.add,
-                      //   ),
-                      // ),
-                    ),
-                  ),
-                  TextField(
-                    controller: _priceController,
-                    decoration: InputDecoration(
-                      hintText: "Enter brand price",
+                      hintText: "Enter carrier name",
                       suffixIcon: IconButton(
                         onPressed: () async {
-                          if (_nameController.text.isNotEmpty &&
-                              _priceController.text.isNotEmpty) {
-                            await DataBaseMethods()
-                                .addBrand(
-                                    brandName: _nameController.text,
-                                    brandPrice: _priceController.text)
-                                .whenComplete(
-                                  () => Navigator.of(context).pushReplacement(
-                                    MaterialPageRoute(
-                                      builder: (context) => const SideDrawer(),
-                                    ),
+                          await DataBaseMethods()
+                              .addCarrier(carrierName: _nameController.text)
+                              .whenComplete(
+                                () => Navigator.of(context).pushReplacement(
+                                  MaterialPageRoute(
+                                    builder: (context) => const SideDrawer(),
                                   ),
-                                );
-                          }
+                                ),
+                              );
                         },
                         icon: const Icon(
                           Icons.add,
@@ -103,7 +75,7 @@ class _AddBrandState extends State<AddBrand> {
                       itemCount: snap.length,
                       itemBuilder: (context, index) => Card(
                         child: Text(
-                          snap[index].data()['brandName'],
+                          snap[index].data()['carrierName'],
                           style: Theme.of(context).textTheme.headline4,
                         ),
                       ),
